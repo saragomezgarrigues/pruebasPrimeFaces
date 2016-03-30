@@ -1,0 +1,33 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+<h:head>
+	<f:loadBundle basename="com.daw2.mensajes" var="msg"/>
+</h:head>
+	<h:form>
+	<p:growl id="growl"/>
+		<p:panelGrid columns="2">
+			<f:facet name="header">Registro de seguidores</f:facet>
+			<h:outputLabel value="#{msg.nombreM}"/>
+			<p:inputText id="followName" placeholder="Escribe tu nombre completo" value="#{seguidor.nombre}"/>
+			<h:outputLabel value="#{msg.apellidoM}"/>
+			<p:inputText id="followSurname" placeholder="Escribe los apellidos" value="#{seguidor.apellidos}"/>
+			<h:outputLabel value="#{msg.nick}"/>
+			<p:inputText id="followNick" value="#{seguidor.nickname}" required="true"/>
+			<h:outputLabel value="#{msg.email}"/>
+			<p:inputText id="emailF" placeholder="Direccion de correo" value="#{seguidor.correo}">
+				<!-- VALIDACIONES DESDE EL LADO CLIENTE-->
+				<f:validateRegex pattern="^([\da-z_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$"/>
+			</p:inputText>
+			<h:outputLabel value="#{msg.clave}"/>
+			<p:password id="claveF"  feedback="true"  value="#{seguidor.password}" required="true" matches="RclaveF" />
+			<h:outputLabel value="#{msg.rclave}"/>
+			<p:password id="RclaveF"  feedback="true"  value="#{seguidor.rpassword}" required="true" />
+			<h:outputLabel value="#{msg.logo}"/>
+        	<p:fileUpload  mode="simple" skinSimple="true"/>
+		</p:panelGrid>
+		<h:commandButton value="#{msg.registro}" actionListener="#{seguidor.registro}" styleClass="ui-priority-primary"/>
+	</h:form>	
+</html>

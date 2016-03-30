@@ -1,0 +1,44 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<f:loadBundle basename="com.daw2.mensajes" var="msg"/>
+</h:head>
+
+<h:body>
+	<h:form>
+	<p:growl id="growl"/>
+		<p:panelGrid columns="2">
+			<f:facet name="header">Registro de músicos</f:facet>
+			<h:outputLabel value="#{msg.nombreM}"/>
+			<p:inputText id="nombre" value="#{musico.nombre}" placeholder="Escriba su nombre"/>
+			<h:outputLabel value="#{msg.apellidoM}"/>
+			<p:inputText id="apellido" value="#{musico.apellidos}" placeholder="Escriba sus apellidos"/>
+			<h:outputLabel value="#{msg.Nartistico}"/>
+			<p:inputText value="#{musico.nick}" placeholder="Nombre artistico"/>
+			<h:outputLabel value="#{msg.grupoM}"/>
+			<p:inputText id="grupo" placeholder="Grupo en el que esté" value="#{musico.grupo}"/>
+			<h:outputLabel value="#{msg.TipoMusica}"/>
+			<p:selectCheckboxMenu id="estilo" value="#{musico.estilosSeleccionados}" label="Estilo" filter="true" filterMatchMode="startsWith" 
+			 panelStyle="width:259px">
+            <f:selectItems value="#{musico.estilos}"/>
+        </p:selectCheckboxMenu>
+        	<h:outputLabel value="#{msg.clave}"/>
+        	<p:password id="clave"  feedback="true" match="rclave" required="true" value="#{musico.clave}" />
+        	<h:outputLabel value="#{msg.rclave}"/>
+        	<p:password id="rclave"  feedback="true" required="true" value="#{musico.rclave}"/>
+        	<h:outputLabel value="#{msg.logo}"/>
+        	<p:fileUpload  mode="simple" skinSimple="true"/>
+		</p:panelGrid>
+		<h:commandButton value="#{msg.btnEnviar}"  actionListener="#{musico.guardar}" styleClass="ui-priority-primary"/>
+		<p:outputPanel id="display" style="width:250px;padding-left:5px;margin-top:10px" >
+        <p:dataList value="#{musico.estilosSeleccionados}" var="estilosLista" emptyMessage="Sin estilo definido">
+            #{estilosLista}
+        </p:dataList>
+        </p:outputPanel>
+	</h:form>
+
+</h:body>
+
+</html>

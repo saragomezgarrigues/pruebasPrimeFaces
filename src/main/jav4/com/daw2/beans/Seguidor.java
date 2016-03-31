@@ -7,6 +7,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
+import org.primefaces.model.UploadedFile;
+
 @ManagedBean
 @ViewScoped
 public class Seguidor implements Serializable {
@@ -15,6 +17,7 @@ public class Seguidor implements Serializable {
 
 	private String nombre,apellidos,nickname,correo,password,rpassword;
 	
+	private UploadedFile image;
 	//CONSTRUCTOR DE LA CLASE
 	public Seguidor() {
 	
@@ -26,9 +29,12 @@ public class Seguidor implements Serializable {
 				null);
 		FacesMessage m2=new FacesMessage("Correo electronico: " + correo);
 	    FacesContext.getCurrentInstance().addMessage(null, message);
-		FacesContext.getCurrentInstance().addMessage(null,m2);        
-	}
-	
+		FacesContext.getCurrentInstance().addMessage(null,m2); 
+		if(image != null) {
+            FacesMessage m3 = new FacesMessage("Nombre del fichero subido: " + image.getFileName());
+            FacesContext.getCurrentInstance().addMessage(null, m3);
+        }
+	}//registro
 	
 	//GETTERS & SETTERS DE LOS ATRIBUTOS
 	public String getNombre() {
@@ -77,6 +83,14 @@ public class Seguidor implements Serializable {
 
 	public void setRpassword(String rpassword) {
 		this.rpassword = rpassword;
+	}
+
+	public UploadedFile getImage() {
+		return image;
+	}
+
+	public void setImage(UploadedFile image) {
+		this.image = image;
 	}
 	
 

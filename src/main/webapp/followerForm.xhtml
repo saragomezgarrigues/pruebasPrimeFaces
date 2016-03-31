@@ -35,7 +35,7 @@
 			<h:outputLabel value="#{msg.rclave}"/>
 			<p:password id="RclaveF"  feedback="true"  value="#{seguidor.rpassword}" required="true" />
 			<h:outputLabel value="#{msg.logo}"/>
-        	<p:fileUpload  mode="simple" skinSimple="true"/>
+        	<p:fileUpload  mode="simple" skinSimple="true" value="#{seguidor.image}"/>
 		</p:panelGrid>
 		<h:commandButton value="#{msg.registro}" actionListener="#{seguidor.registro}" styleClass="ui-priority-primary"/>
 	</h:form>	
